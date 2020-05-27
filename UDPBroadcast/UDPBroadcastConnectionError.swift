@@ -11,6 +11,9 @@ import Foundation
 public extension UDPBroadcastConnection {
     
     enum ConnectionError: Error {
+        // IPv6 Address creation
+        case createv6AddressFailed(message: String)
+
         // Creating socket
         case createSocketFailed
         case enableBroadcastFailed

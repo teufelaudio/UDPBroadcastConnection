@@ -13,7 +13,8 @@ class ViewController: UIViewController {
     
     @IBOutlet var logView: UITextView!
     
-    var broadcastConnection: UDPBroadcastConnection!
+    var broadcastConnection: UDPv4BroadcastConnection!
+    var broadcastConnectionv6: UDPv6BroadcastConnection!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,24 +22,24 @@ class ViewController: UIViewController {
         logView.text = "UDP Broadcast: tap on reload button to start sending.\n\n"
         
         do {
-            broadcastConnection = try UDPBroadcastConnection(
-                port: Config.Ports.broadcast,
-                handler: { [weak self] (ipAddress: String, port: Int, response: Data) -> Void in
-                    guard let self = self else { return }
-                    let hexString = self.hexBytes(data: response)
-                    let utf8String = String(data: response, encoding: .utf8) ?? ""
-                    print("UDP connection received from \(ipAddress):\(port):\n\(hexString)\n\(utf8String)\n")
-                    self.log("Received from \(ipAddress):\(port):\n\(hexString)\n\(utf8String)\n")
-                },
-                errorHandler: { [weak self] (error) in
-                    guard let self = self else { return }
-                    self.log("Error: \(error)\n")
-            })
+            broadcastConnection = try UDPv4BroadcastConnection(port: Config.Ports.broadcast, handler: responseHandler, errorHandler: errorHandler)
+            broadcastConnectionv6 = try UDPv6BroadcastConnection(port: Config.Ports.broadcast, handler: responseHandler, errorHandler: errorHandler)
         } catch {
             log("Error: \(error)\n")
         }
     }
     
+    fileprivate func responseHandler(ipAddress: String, port: Int, response: Data) {
+        let hexString = self.hexBytes(data: response)
+        let utf8String = String(data: response, encoding: .utf8) ?? ""
+        print("UDP connection received from \(ipAddress):\(port):\n\(hexString)\n\(utf8String)\n")
+        self.log("Received from \(ipAddress):\(port):\n\(hexString)\n\(utf8String)\n")
+    }
+    
+    fileprivate func errorHandler(error: UDPBroadcastConnection.ConnectionError) {
+        self.log("Error: \(error)\n")
+    }
+
     private func hexBytes(data: Data) -> String {
         return data
             .map { String($0, radix: 16, uppercase: true) }
@@ -49,7 +50,9 @@ class ViewController: UIViewController {
     @IBAction func reload(_ sender: AnyObject) {
         log("")
         do {
-            try broadcastConnection.sendBroadcast(Config.Strings.broadcastMessage)
+            try broadcastConnectionv6.sendBroadcast(message: Config.Strings.broadcastMessage)
+            try broadcastConnection.sendBroadcast(message: Config.Strings.broadcastMessage)
+
             log("Sent: '\(Config.Strings.broadcastMessage)'\n")
         } catch {
             log("Error: \(error)\n")
