@@ -21,6 +21,9 @@ public class UDPv6BroadcastConnection: UDPBroadcastConnection {
     /// The IPv6 address of the UDP socket.
     var v6address: sockaddr_in6
     
+    /// Name of the network interface, usually "en0"
+    let interface: String
+    
     // MARK: Initializers
     
     /// Initializes the UDP connection with the correct port address.
@@ -29,13 +32,14 @@ public class UDPv6BroadcastConnection: UDPBroadcastConnection {
     ///   immediately, use the `bindIt` parameter. This will also try to reopen the socket if it gets closed.
     ///
     /// - Parameters:
+    ///   - interface: Name of the network interface, usually "en0"
     ///   - port: Number of the UDP port to use.
     ///   - bindIt: Opens a port immediately if true, on demand if false. Default is false.
     ///   - handler: Handler that gets called when data is received.
     ///   - errorHandler: Handler that gets called when an error occurs.
     ///
     /// - Throws: Throws a `ConnectionError` if an error occurs.
-    public init(port: UInt16, bindIt: Bool = false, handler: ReceiveHandler?, errorHandler: ErrorHandler?) throws {
+    public init(interface: String = "en0", port: UInt16, bindIt: Bool = false, handler: ReceiveHandler?, errorHandler: ErrorHandler?) throws {
 
         var addr = in6_addr()
         let ret = withUnsafeMutablePointer(to: &addr) {
@@ -61,7 +65,8 @@ public class UDPv6BroadcastConnection: UDPBroadcastConnection {
             sin6_addr: addr,
             sin6_scope_id: 0
         )
-
+        self.interface = interface
+    
         try super.init(bindIt: bindIt, handler: handler, errorHandler: errorHandler)
     }
     
@@ -71,7 +76,7 @@ public class UDPv6BroadcastConnection: UDPBroadcastConnection {
         guard newSocket > 0 else { throw ConnectionError.createSocketFailed }
         
         // Enable broadcast on socket
-        let index = if_nametoindex("en0".cString(using: .ascii))
+        let index = if_nametoindex(interface.cString(using: .ascii))
         var scope: UInt32 = UInt32(index)
         let ret = setsockopt(newSocket, IPPROTO_IPV6, IPV6_MULTICAST_IF, &scope, socklen_t(MemoryLayout<UInt32>.size));
         if ret == -1 {

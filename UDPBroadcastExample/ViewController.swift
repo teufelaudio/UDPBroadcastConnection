@@ -22,8 +22,13 @@ class ViewController: UIViewController {
         logView.text = "UDP Broadcast: tap on reload button to start sending.\n\n"
         
         do {
-            broadcastConnection = try UDPv4BroadcastConnection(port: Config.Ports.broadcast, handler: responseHandler, errorHandler: errorHandler)
-            broadcastConnectionv6 = try UDPv6BroadcastConnection(port: Config.Ports.broadcast, handler: responseHandler, errorHandler: errorHandler)
+            broadcastConnection = try UDPv4BroadcastConnection(port: Config.Ports.broadcast,
+                                                               handler: responseHandler,
+                                                               errorHandler: errorHandler)
+            broadcastConnectionv6 = try UDPv6BroadcastConnection(interface: "en0",
+                                                                 port: Config.Ports.broadcast,
+                                                                 handler: responseHandler,
+                                                                 errorHandler: errorHandler)
         } catch {
             log("Error: \(error)\n")
         }
