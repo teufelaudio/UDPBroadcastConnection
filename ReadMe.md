@@ -81,15 +81,59 @@ You can test the broadcast and the handler for receiving messages by running the
 
 ## Installation
 
-### Carthage
 
-Add the following line to your [Cartfile](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#cartfile).
+### Swift Package Manager
 
+Create or modify the Package.swift at the root folder of your project. You can use the automatic linking mode (static/dynamic), or use the project `UDPBroadcastConnectionDynamic` to force dynamic linking and overcome current Xcode limitations to resolve diamond dependency issues.
+
+If you use it from only one target, automatic mode should be fine.
+
+Automatic linking mode:
+```swift
+// swift-tools-version:5.2
+
+import PackageDescription
+
+let package = Package(
+  name: "MyApp",
+  products: [
+    .executable(name: "MyApp", targets: ["MyApp"])
+  ],
+  dependencies: [
+    .package(url: "https://github.com/teufelaudio/UDPBroadcastConnection.git", .branch("master"))
+  ],
+  targets: [
+    .target(name: "MyApp", dependencies: ["UDPBroadcastConnection"])
+  ]
+)
 ```
-github "gunterhager/UDPBroadcastConnection"
+
+Dynamic linking mode:
+```swift
+// swift-tools-version:5.2
+
+import PackageDescription
+
+let package = Package(
+  name: "MyApp",
+  products: [
+    .executable(name: "MyApp", targets: ["MyApp"])
+  ],
+  dependencies: [
+    .package(url: "https://github.com/teufelaudio/UDPBroadcastConnection.git", .branch("master"))
+  ],
+  targets: [
+    .target(name: "MyApp", dependencies: ["UDPBroadcastConnectionDynamic"])
+  ]
+)
 ```
 
-Then run `carthage update`.
+Then you can either building on the terminal or use Xcode 11 or higher that now supports SPM natively.
+
+```shell
+$ swift build
+$ xed .
+```
 
 ### Manually
 
