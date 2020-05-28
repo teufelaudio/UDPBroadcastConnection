@@ -10,7 +10,7 @@ import Foundation
 
 public extension UDPBroadcastConnection {
     
-    enum ConnectionError: Error {
+    public enum ConnectionError: Error {
         // IPv6 Address creation
         case createv6AddressFailed(message: String)
 
