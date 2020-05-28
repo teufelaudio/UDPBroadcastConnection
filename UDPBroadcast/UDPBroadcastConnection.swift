@@ -34,18 +34,10 @@ open class UDPBroadcastConnection: UDPBroadcastSocketCreating {
     /// The dispatch queue to run responseSource & reconnection on
     var dispatchQueue: DispatchQueue = DispatchQueue.main
     
-    /// Bind to port to start listening without first sending a message
-    var shouldBeBound: Bool = false
-    
     /// Internal constructor avoids instanciating of the "abstract" class. Use UDPv4BroadcastConnection() / UDPv6BroadcastConnection() instead.
-    init(bindIt: Bool = false, handler: ReceiveHandler?, errorHandler: ErrorHandler?) throws {
+    init(handler: ReceiveHandler?, errorHandler: ErrorHandler?) throws {
         self.handler = handler
         self.errorHandler = errorHandler
-        self.shouldBeBound = bindIt
-        
-        if bindIt {
-            try createSocket()
-        }
     }
     
     deinit {
@@ -141,7 +133,7 @@ open class UDPBroadcastConnection: UDPBroadcastSocketCreating {
             source.cancel()
             responseSource = nil
         }
-        if shouldBeBound && reopen {
+        if reopen {
             dispatchQueue.async {
                 do {
                     try self.createSocket()

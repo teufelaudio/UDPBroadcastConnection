@@ -69,21 +69,6 @@ public class UDPv4BroadcastConnection: UDPBroadcastConnection {
             close(newSocket)
             throw ConnectionError.enableBroadcastFailed
         }
-        
-        // Bind socket if needed
-        if shouldBeBound {
-            var saddr = sockaddr(sa_len: 0, sa_family: 0,
-                                 sa_data: (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0))
-            self.address.sin_addr = INADDR_ANY
-            memcpy(&saddr, &self.address, MemoryLayout<sockaddr_in>.size)
-            self.address.sin_addr = INADDR_BROADCAST
-            let isBound = bind(newSocket, &saddr, socklen_t(MemoryLayout<sockaddr_in>.size))
-            if isBound == -1 {
-                debugPrint("Couldn't bind socket")
-                close(newSocket)
-                throw ConnectionError.bindSocketFailed
-            }
-        }
 
         return newSocket
     }

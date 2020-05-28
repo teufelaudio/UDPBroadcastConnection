@@ -34,12 +34,11 @@ public class UDPv6BroadcastConnection: UDPBroadcastConnection {
     /// - Parameters:
     ///   - interface: Name of the network interface, usually "en0"
     ///   - port: Number of the UDP port to use.
-    ///   - bindIt: Opens a port immediately if true, on demand if false. Default is false.
     ///   - handler: Handler that gets called when data is received.
     ///   - errorHandler: Handler that gets called when an error occurs.
     ///
     /// - Throws: Throws a `ConnectionError` if an error occurs.
-    public init(interface: String = "en0", port: UInt16, bindIt: Bool = false, handler: ReceiveHandler?, errorHandler: ErrorHandler?) throws {
+    public init(interface: String = "en0", port: UInt16, handler: ReceiveHandler?, errorHandler: ErrorHandler?) throws {
 
         var addr = in6_addr()
         let ret = withUnsafeMutablePointer(to: &addr) {
@@ -67,7 +66,7 @@ public class UDPv6BroadcastConnection: UDPBroadcastConnection {
         )
         self.interface = interface
     
-        try super.init(bindIt: bindIt, handler: handler, errorHandler: errorHandler)
+        try super.init(bindIt: false, handler: handler, errorHandler: errorHandler)
     }
     
     override func setupSocket() throws -> Int32 {
@@ -83,13 +82,6 @@ public class UDPv6BroadcastConnection: UDPBroadcastConnection {
             debugPrint("Couldn't enable broadcast on socket")
             close(newSocket)
             throw ConnectionError.enableBroadcastFailed
-        }
-
-        // Bind socket if needed
-        if shouldBeBound {
-            // FIXME: not yet implemented
-            debugPrint("FIXME: implement IPv6 binding!")
-            throw ConnectionError.createSocketFailed
         }
         
         return newSocket
