@@ -44,7 +44,8 @@ right choice, however you should figure out programmatically the default network
 This example sets up two connections, one for IPv4 and one for IPv6:
 
 ```swift
-broadcastv4Connection = try UDPv4BroadcastConnection(
+broadcastv4Connection = try UDPBroadcastConnection(
+  addressFamily: .ipv4,
   port: 35602,
   handler: { (response: (ipAddress: String, port: Int, response: [UInt8])) -> Void in
     print("Received from \(response.ipAddress):\(response.port):\n\n\(response.response)")
@@ -53,14 +54,17 @@ broadcastv4Connection = try UDPv4BroadcastConnection(
     print(error)
   })
 
-broadcastv6Connection = try UDPv6BroadcastConnection(
-port: 35602,
-handler: { (response: (ipAddress: String, port: Int, response: [UInt8])) -> Void in
-  print("Received from \(response.ipAddress):\(response.port):\n\n\(response.response)")
-  },
-errorHandler: { (error) in 
-  print(error)
-})
+broadcastv6Connection = try UDPBroadcastConnection(
+  addressFamily: .ipv6,
+  interface: "en0",
+  port: 35602,
+  handler: { (response: (ipAddress: String, port: Int, response: [UInt8])) -> Void in
+    print("Received from \(response.ipAddress):\(response.port):\n\n\(response.response)")
+    },
+  errorHandler: { (error) in 
+    print(error)
+  })
+  
 ```
 
 Send a messages via broadcast:

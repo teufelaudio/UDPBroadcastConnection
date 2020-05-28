@@ -8,11 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6EB46EAC2141837E001C65D5 /* UDPBroadcast_tvOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB46EAA2141837E001C65D5 /* UDPBroadcast_tvOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6EB46EB021418386001C65D5 /* UDPv4BroadcastConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC87C7831C6B450400B940F5 /* UDPv4BroadcastConnection.swift */; };
 		6EB46EBA214183B2001C65D5 /* UDPBroadcast_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB46EB8214183B2001C65D5 /* UDPBroadcast_macOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6EB46ECB214183D0001C65D5 /* UDPv4BroadcastConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC87C7831C6B450400B940F5 /* UDPv4BroadcastConnection.swift */; };
 		6EB46ED621418407001C65D5 /* UDPBroadcast_watchOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EB46ED421418407001C65D5 /* UDPBroadcast_watchOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6EB46EDA214185E5001C65D5 /* UDPv4BroadcastConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC87C7831C6B450400B940F5 /* UDPv4BroadcastConnection.swift */; };
 		BC15F25A22894CDD00DCEC9E /* UDPBroadcastConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFC10B82248D428003AB7FB /* UDPBroadcastConnectionError.swift */; };
 		BC15F25B22894CDE00DCEC9E /* UDPBroadcastConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFC10B82248D428003AB7FB /* UDPBroadcastConnectionError.swift */; };
 		BC15F25C22894CDE00DCEC9E /* UDPBroadcastConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFC10B82248D428003AB7FB /* UDPBroadcastConnectionError.swift */; };
@@ -22,12 +19,10 @@
 		BC87C7791C6B448A00B940F5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC87C7771C6B448A00B940F5 /* Main.storyboard */; };
 		BC87C77B1C6B448A00B940F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC87C77A1C6B448A00B940F5 /* Assets.xcassets */; };
 		BC87C77E1C6B448A00B940F5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC87C77C1C6B448A00B940F5 /* LaunchScreen.storyboard */; };
-		BC87C7841C6B450400B940F5 /* UDPv4BroadcastConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC87C7831C6B450400B940F5 /* UDPv4BroadcastConnection.swift */; };
 		BC87C7861C6B45E600B940F5 /* UDPBroadcast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC87C7621C6B443A00B940F5 /* UDPBroadcast.framework */; };
 		BC87C7871C6B45E600B940F5 /* UDPBroadcast.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BC87C7621C6B443A00B940F5 /* UDPBroadcast.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BC87C78C1C6B478800B940F5 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC87C78B1C6B478800B940F5 /* Config.swift */; };
 		BCFC10B92248D428003AB7FB /* UDPBroadcastConnectionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFC10B82248D428003AB7FB /* UDPBroadcastConnectionError.swift */; };
-		BFDDF454247E8E40009B6CE5 /* UDPv6BroadcastConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDDF453247E8E40009B6CE5 /* UDPv6BroadcastConnection.swift */; };
 		BFDDF456247E9134009B6CE5 /* UDPBroadcastConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFDDF455247E9134009B6CE5 /* UDPBroadcastConnection.swift */; };
 /* End PBXBuildFile section */
 
@@ -75,12 +70,10 @@
 		BC87C77A1C6B448A00B940F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC87C77D1C6B448A00B940F5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC87C77F1C6B448A00B940F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BC87C7831C6B450400B940F5 /* UDPv4BroadcastConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDPv4BroadcastConnection.swift; sourceTree = "<group>"; };
 		BC87C78B1C6B478800B940F5 /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		BC87C78D1C6B54AB00B940F5 /* ReadMe.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ReadMe.md; sourceTree = "<group>"; };
 		BC87C78E1C6B5A2900B940F5 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		BCFC10B82248D428003AB7FB /* UDPBroadcastConnectionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDPBroadcastConnectionError.swift; sourceTree = "<group>"; };
-		BFDDF453247E8E40009B6CE5 /* UDPv6BroadcastConnection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UDPv6BroadcastConnection.swift; sourceTree = "<group>"; };
 		BFDDF455247E9134009B6CE5 /* UDPBroadcastConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UDPBroadcastConnection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,8 +175,6 @@
 			children = (
 				BC87C7671C6B443A00B940F5 /* Info.plist */,
 				BC87C7651C6B443A00B940F5 /* UDPBroadcast.h */,
-				BC87C7831C6B450400B940F5 /* UDPv4BroadcastConnection.swift */,
-				BFDDF453247E8E40009B6CE5 /* UDPv6BroadcastConnection.swift */,
 				BCFC10B82248D428003AB7FB /* UDPBroadcastConnectionError.swift */,
 				BFDDF455247E9134009B6CE5 /* UDPBroadcastConnection.swift */,
 			);
@@ -436,7 +427,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC15F25A22894CDD00DCEC9E /* UDPBroadcastConnectionError.swift in Sources */,
-				6EB46EB021418386001C65D5 /* UDPv4BroadcastConnection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,7 +435,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC15F25B22894CDE00DCEC9E /* UDPBroadcastConnectionError.swift in Sources */,
-				6EB46ECB214183D0001C65D5 /* UDPv4BroadcastConnection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,7 +443,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC15F25C22894CDE00DCEC9E /* UDPBroadcastConnectionError.swift in Sources */,
-				6EB46EDA214185E5001C65D5 /* UDPv4BroadcastConnection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,8 +452,6 @@
 			files = (
 				BFDDF456247E9134009B6CE5 /* UDPBroadcastConnection.swift in Sources */,
 				BCFC10B92248D428003AB7FB /* UDPBroadcastConnectionError.swift in Sources */,
-				BFDDF454247E8E40009B6CE5 /* UDPv6BroadcastConnection.swift in Sources */,
-				BC87C7841C6B450400B940F5 /* UDPv4BroadcastConnection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

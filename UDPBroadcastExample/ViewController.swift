@@ -13,8 +13,8 @@ class ViewController: UIViewController {
     
     @IBOutlet var logView: UITextView!
     
-    var broadcastConnection: UDPv4BroadcastConnection!
-    var broadcastConnectionv6: UDPv6BroadcastConnection!
+    var broadcastConnection: UDPBroadcastConnection!
+    var broadcastConnectionv6: UDPBroadcastConnection!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,13 +22,15 @@ class ViewController: UIViewController {
         logView.text = "UDP Broadcast: tap on reload button to start sending.\n\n"
         
         do {
-            broadcastConnection = try UDPv4BroadcastConnection(port: Config.Ports.broadcast,
+            broadcastConnection = try UDPBroadcastConnection(addressFamily: .ipv4,
+                                                             port: Config.Ports.broadcast,
+                                                             handler: responseHandler,
+                                                             errorHandler: errorHandler)
+            broadcastConnectionv6 = try UDPBroadcastConnection(addressFamily: .ipv6,
+                                                               interface: "en0",
+                                                               port: Config.Ports.broadcast,
                                                                handler: responseHandler,
                                                                errorHandler: errorHandler)
-            broadcastConnectionv6 = try UDPv6BroadcastConnection(interface: "en0",
-                                                                 port: Config.Ports.broadcast,
-                                                                 handler: responseHandler,
-                                                                 errorHandler: errorHandler)
         } catch {
             log("Error: \(error)\n")
         }
