@@ -3,7 +3,11 @@
 <a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/Language-Swift 5-orange.svg" alt="Language: Swift 5.0" /></a>
 <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-brightgreen.svg" alt="Carthage compatible" /></a>
 
-Framework to send UDP broadcast messages and listen to responses using a [Dispatch](https://developer.apple.com/reference/dispatch) dispatch source.
+Framework to send IPv4/IPv6 UDP broadcast messages and listen to responses using a [Dispatch](https://developer.apple.com/reference/dispatch) dispatch source.
+
+Note: this is a fork of [gunterhager/UDPBroadcastConnection](https://github.com/gunterhager/UDPBroadcastConnection) with breaking changes:
+* Immediate binding is not supported 
+* carthage support was removed
 
 ## Requirements
 
@@ -128,7 +132,7 @@ let package = Package(
 )
 ```
 
-Then you can either building on the terminal or use Xcode 11 or higher that now supports SPM natively.
+Then you can either build on the terminal or use Xcode 11 or higher that now supports SPM natively.
 
 ```shell
 $ swift build

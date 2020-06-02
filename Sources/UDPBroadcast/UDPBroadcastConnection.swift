@@ -270,7 +270,6 @@ open class UDPBroadcastConnection {
         switch addressFamily {
         case .ipv4:
             try sendBroadcastv4(data: data)
-            break
         case .ipv6:
             try sendBroadcastv6(data: data)
         }
